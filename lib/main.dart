@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:trage_tube_flutter/pages/login_page.dart';
-import 'package:trage_tube_flutter/pages/register_page.dart';
+import 'package:get/get.dart';
+import 'package:trage_tube_flutter/home.dart';
 
 class TargeTubeApp extends StatelessWidget {
   const TargeTubeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "TargeTube", home: SafeArea(child: LoginPage()));
+    return GetMaterialApp(title: "TargeTube", home: SafeArea(child: Home()));
   }
 }
 
