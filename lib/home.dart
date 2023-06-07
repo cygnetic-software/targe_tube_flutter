@@ -9,7 +9,7 @@ import 'package:trage_tube_flutter/pages/register_page.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
-  final index = 0.obs;
+  final index = 3.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
