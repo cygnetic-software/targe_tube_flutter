@@ -7,7 +7,7 @@ class TargeTubeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(title: "TargeTube", home: SafeArea(child: Home()));
+    return GetMaterialApp(title: "Aneen", home: SafeArea(child: Home()));
   }
 }
 

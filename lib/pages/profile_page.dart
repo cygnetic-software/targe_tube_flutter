@@ -12,9 +12,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile Page'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Profile Page'),
+      // ),
       body: Obx(() {
         switch (authController.pageState.value) {
           case PageState.login:
