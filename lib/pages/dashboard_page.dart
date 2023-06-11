@@ -18,7 +18,10 @@ class DashboardPage extends StatelessWidget {
                 children: [
                   Text(
                     "Home",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
                   ),
                   SearchBarSection(),
                 ],
@@ -29,7 +32,10 @@ class DashboardPage extends StatelessWidget {
           ),
           SliverList(
             delegate: SliverChildListDelegate([
-              VideoCard(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: VideoCard(),
+              ),
             ]),
           ),
         ],

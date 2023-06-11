@@ -21,7 +21,7 @@ class SearchBarSection extends StatelessWidget {
                   color: Colors.grey[200]),
             ),
             Text(
-              "Market Your Business",
+              "Publish Your Cause",
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,

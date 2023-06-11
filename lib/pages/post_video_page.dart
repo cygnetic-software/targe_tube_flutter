@@ -65,10 +65,20 @@ class PostVideoPage extends StatelessWidget {
               },
               child: Column(
                 children: [
-                  Icon(
-                    Icons.fiber_manual_record,
-                    size: 55,
-                    color: Colors.red,
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(
+                        Icons.fiber_manual_record,
+                        size: 65,
+                        color: Colors.black,
+                      ),
+                      Icon(
+                        Icons.fiber_manual_record,
+                        size: 55,
+                        color: Colors.red,
+                      ),
+                    ],
                   ),
                   Text(
                     'Start Recording',
