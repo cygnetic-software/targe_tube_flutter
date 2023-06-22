@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:trage_tube_flutter/pages/enter_video_detail_page.dart';
 
 class PostVideoPage extends StatelessWidget {
-  const PostVideoPage({super.key});
+  const PostVideoPage({Key? key});
 
   void _showBottomModal(BuildContext context) {
     showModalBottomSheet(
@@ -37,10 +39,58 @@ class PostVideoPage extends StatelessWidget {
                   // Handle use YouTube link action
                   print('Use YouTube link');
                   Navigator.pop(context); // Close the bottom sheet
+                  _showYouTubeLinkModal(
+                      context); // Show the YouTube link input modal
                 },
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  void _showYouTubeLinkModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Please enter a YouTube Video URL',
+            style: TextStyle(fontSize: 15),
+          ),
+          content: TextFormField(
+            decoration: InputDecoration(
+              hintText: 'Enter URL',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a YouTube Video URL';
+              }
+              return null;
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Handle submit button tap
+                // You can access the YouTube URL using the TextFormField's value
+                Navigator.pop(context); // Close the dialog
+                Get.to(
+                    EnterVideoDetailPage()); // Navigate to the details screen
+              },
+              child: Text('Submit'),
+            ),
+          ],
         );
       },
     );
