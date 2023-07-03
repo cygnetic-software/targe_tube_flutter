@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: Image.asset(
-                        'assets/images/targetubeLogo.png',
+                        'assets/images/aneenLogo.png',
                         fit: BoxFit.cover,
                       ),
                     ),

@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBRT36klfxP8CX_WUfE-pGpio7BllBOtYU',
-    appId: '1:237015747549:android:a1dba39ed1a0cc6c038434',
+    appId: '1:237015747549:android:0364cd4521134509038434',
     messagingSenderId: '237015747549',
     projectId: 'aneen-9f883',
     storageBucket: 'aneen-9f883.appspot.com',
@@ -62,21 +62,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBxcyLRCEnynRxVVMOKV0SOzN9VZwlUoAk',
-    appId: '1:237015747549:ios:55ad5f424ce24034038434',
+    appId: '1:237015747549:ios:1f95d59e3f1094de038434',
     messagingSenderId: '237015747549',
     projectId: 'aneen-9f883',
     storageBucket: 'aneen-9f883.appspot.com',
-    iosClientId: '237015747549-ocui2261ul9af77t10kkir32n413e0hj.apps.googleusercontent.com',
-    iosBundleId: 'com.example.trageTubeFlutter',
+    iosClientId: '237015747549-491vj2hqjbpjmlrq61nppqv7mdln5ij6.apps.googleusercontent.com',
+    iosBundleId: 'com.example.aneen',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBxcyLRCEnynRxVVMOKV0SOzN9VZwlUoAk',
-    appId: '1:237015747549:ios:55ad5f424ce24034038434',
+    appId: '1:237015747549:ios:a4093833ac4333ff038434',
     messagingSenderId: '237015747549',
     projectId: 'aneen-9f883',
     storageBucket: 'aneen-9f883.appspot.com',
-    iosClientId: '237015747549-ocui2261ul9af77t10kkir32n413e0hj.apps.googleusercontent.com',
-    iosBundleId: 'com.example.trageTubeFlutter',
+    iosClientId: '237015747549-ogaksl62v720jraa637fc8d8ta80d5pl.apps.googleusercontent.com',
+    iosBundleId: 'com.example.aneen.RunnerTests',
   );
 }

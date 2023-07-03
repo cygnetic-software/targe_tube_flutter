@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>237015747549-ogaksl62v720jraa637fc8d8ta80d5pl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.237015747549-ogaksl62v720jraa637fc8d8ta80d5pl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBxcyLRCEnynRxVVMOKV0SOzN9VZwlUoAk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>237015747549</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.aneen.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>aneen-9f883</string>
+	<key>STORAGE_BUCKET</key>
+	<string>aneen-9f883.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:237015747549:ios:a4093833ac4333ff038434</string>
+</dict>
+</plist>

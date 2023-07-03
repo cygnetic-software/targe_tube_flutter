@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "237015747549",
+    "project_id": "aneen-9f883",
+    "storage_bucket": "aneen-9f883.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237015747549:android:0364cd4521134509038434",
+        "android_client_info": {
+          "package_name": "com.example.aneen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237015747549-lhh012vaubmvtq1b4hoag9hcs8j1u11t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRT36klfxP8CX_WUfE-pGpio7BllBOtYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237015747549-lhh012vaubmvtq1b4hoag9hcs8j1u11t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "237015747549-ocui2261ul9af77t10kkir32n413e0hj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.trageTubeFlutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237015747549:android:a1dba39ed1a0cc6c038434",
+        "android_client_info": {
+          "package_name": "com.example.trage_tube_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237015747549-lhh012vaubmvtq1b4hoag9hcs8j1u11t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRT36klfxP8CX_WUfE-pGpio7BllBOtYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237015747549-lhh012vaubmvtq1b4hoag9hcs8j1u11t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "237015747549-ocui2261ul9af77t10kkir32n413e0hj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.trageTubeFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,7 +7,8 @@ class SearchBarSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue, // Set the background color of the column
+      color: Theme.of(context)
+          .primaryColor, // Set the background color of the column
       // height: 150, // Set the desired height of the column
       child: Padding(
         padding: const EdgeInsets.only(top: 30, bottom: 30),

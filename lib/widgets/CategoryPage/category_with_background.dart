@@ -28,7 +28,7 @@ class CategoryWithBackground extends StatelessWidget {
                 image: DecorationImage(
                   scale: 2.0,
                   image: AssetImage(
-                    'assets/images/targetubeLogo.png',
+                    'assets/images/aneenLogo.png',
                   ), // Set the path to your background image
                   fit: BoxFit.cover,
                 ),
