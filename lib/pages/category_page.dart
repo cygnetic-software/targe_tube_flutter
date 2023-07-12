@@ -1,6 +1,7 @@
 import 'package:aneen/controllers/category_controller.dart';
 import 'package:aneen/global/categories.dart';
 import 'package:aneen/model/category_model.dart';
+import 'package:aneen/pages/subcategory_page.dart';
 import 'package:flutter/material.dart';
 import 'package:aneen/utils/vertical_spacer.dart';
 import 'package:aneen/widgets/CategoryPage/category_with_background.dart';
@@ -49,7 +50,9 @@ class CategoryPage extends StatelessWidget {
                         .map((e) => CategoryWithBackground(
                             category: e,
                             handler: () {
-                              print("Hello");
+                              categoryController.selectedCategory.value =
+                                  e.categoryName;
+                              Get.to(() => SubcategoryPage(category: e));
                             }))
                         .toList(),
                   ),

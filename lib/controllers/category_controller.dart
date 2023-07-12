@@ -1,12 +1,16 @@
 import 'package:aneen/global/categories.dart';
 import 'package:aneen/global/user.dart';
 import 'package:aneen/model/category_model.dart';
+import 'package:aneen/model/video_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final loadingCategories = false.obs;
+  final selectedCategory = "".obs;
+  final selectedSubcategory = "".obs;
   void fetchCategories() async {
     loadingCategories.value = true;
     try {
@@ -25,7 +29,7 @@ class CategoryController extends GetxController {
     }
   }
 
-  Future<List<Map<String, dynamic>>> searchByCategory(String category) async {
+  Future<List<VideoModel>> searchByCategory(String category) async {
     try {
       final QuerySnapshot querySnapshot = await _firestore
           .collection('posts')
@@ -41,14 +45,17 @@ class CategoryController extends GetxController {
           .where((post) => !blockedUserIds.contains(post['uploader_id']))
           .toList();
 
-      return filteredPosts;
+      final List<VideoModel> filteredVideos =
+          filteredPosts.map((e) => VideoModel.fromJson(e)).toList();
+
+      return filteredVideos;
     } catch (e) {
       print('Failed to search posts by category: $e');
       return [];
     }
   }
 
-  Future<List<Map<String, dynamic>>> searchByCategorySubcategory(
+  Future<List<VideoModel>> searchByCategorySubcategory(
       String category, String subcategory) async {
     try {
       final QuerySnapshot querySnapshot = await _firestore
@@ -65,8 +72,10 @@ class CategoryController extends GetxController {
       final List<Map<String, dynamic>> filteredPosts = posts
           .where((post) => !blockedUserIds.contains(post['uploader_id']))
           .toList();
+      final List<VideoModel> filteredVideos =
+          filteredPosts.map((e) => VideoModel.fromJson(e)).toList();
 
-      return filteredPosts;
+      return filteredVideos;
     } catch (e) {
       print('Failed to search posts by category and subcategory: $e');
       return [];

@@ -1,5 +1,7 @@
+import 'package:aneen/controllers/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:aneen/utils/vertical_spacer.dart';
+import 'package:get/get.dart';
 
 class SearchBarSection extends StatelessWidget {
   const SearchBarSection({super.key});
@@ -37,21 +39,12 @@ class SearchBarSection extends StatelessWidget {
   }
 }
 
-class SearchBar extends StatefulWidget {
-  @override
-  _SearchBarState createState() => _SearchBarState();
-}
-
-class _SearchBarState extends State<SearchBar> {
+class SearchBar extends StatelessWidget {
   // TextEditingController _searchController;
-
-  void performSearch(String query) {
-    // Perform search functionality here
-    print("Searching for: $query");
-  }
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<DashboardController>();
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
@@ -64,6 +57,10 @@ class _SearchBarState extends State<SearchBar> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 18),
                 child: TextField(
+                  onSubmitted: (value) => controller.searchVideos(value),
+                  focusNode: controller.searchFocusNode,
+                  controller: controller.searchEditingController,
+                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     hintText: "Search",
                     border: InputBorder.none,
@@ -74,7 +71,8 @@ class _SearchBarState extends State<SearchBar> {
             IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                performSearch("Search");
+                controller
+                    .searchVideos(controller.searchEditingController.text);
               },
             ),
           ],

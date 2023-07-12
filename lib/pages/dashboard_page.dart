@@ -38,9 +38,9 @@ class DashboardPage extends StatelessWidget {
               floating: true,
             ),
             SliverList.builder(
-              itemBuilder: (context, index) =>
-                  SingleVideoCard(video: dashboardController.videos[index]),
-              itemCount: dashboardController.videos.length,
+              itemBuilder: (context, index) => SingleVideoCard(
+                  video: dashboardController.filteredVideos[index]),
+              itemCount: dashboardController.filteredVideos.length,
             ),
           ],
         ),
