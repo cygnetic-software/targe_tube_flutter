@@ -1,3 +1,7 @@
+import 'package:aneen/controllers/setting_controller.dart';
+import 'package:aneen/pages/profile/blocked_users.dart';
+import 'package:aneen/pages/profile/my_videos.dart';
+import 'package:aneen/pages/profile/pending_videos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aneen/controllers/auth_controller.dart';
@@ -7,10 +11,12 @@ import 'package:aneen/widgets/ProfilePage/text_holder.dart';
 
 class Profile extends StatelessWidget {
   Profile({super.key});
-  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SettingController());
+    final authController = Get.find<AuthController>();
+    final controller = Get.find<SettingController>();
     return Padding(
       padding: EdgeInsets.all(10),
       child: Column(
@@ -24,19 +30,35 @@ class Profile extends StatelessWidget {
             alignment: Alignment.centerLeft,
           ),
           VerticalSpacer(10),
-          TextHolder(text: "Malik Muneeb"),
+          Obx(
+            () => TextHolder(text: controller.name.value),
+          ),
           VerticalSpacer(10),
-          TextHolder(text: "malikmuneeb20@hotmail.com"),
+          Obx(
+            () => TextHolder(text: controller.email.value),
+          ),
           VerticalSpacer(30),
-          CustomListButton(text: "My Videos", handler: () {}),
+          CustomListButton(
+              text: "My Videos",
+              handler: () {
+                Get.to(() => MyVideos());
+              }),
           const Divider(
             thickness: 2,
           ),
-          CustomListButton(text: "Pending Vidoes", handler: () {}),
+          CustomListButton(
+              text: "Pending Vidoes",
+              handler: () {
+                Get.to(() => PendingVideos());
+              }),
           const Divider(
             thickness: 2,
           ),
-          CustomListButton(text: "Blocked Users", handler: () {}),
+          CustomListButton(
+              text: "Blocked Users",
+              handler: () {
+                Get.to(() => BlockedUsers());
+              }),
           const Divider(
             thickness: 2,
           ),
@@ -46,7 +68,7 @@ class Profile extends StatelessWidget {
           ),
           TextButton(
               onPressed: () {
-                authController.goToLogin();
+                authController.signOut();
               },
               child: Text(
                 "Logout",

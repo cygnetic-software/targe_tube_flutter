@@ -1,0 +1,25 @@
+import 'package:aneen/controllers/setting_controller.dart';
+import 'package:aneen/utils/custom_loader.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class PendingVideos extends StatelessWidget {
+  const PendingVideos({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.find<SettingController>();
+    return Scaffold(
+      appBar: AppBar(title: Text("Pending Videos")),
+      // body: Padding(
+      //   padding: EdgeInsets.all(10),
+      //   child: Obx(
+      //     () => controller.loadingPendingVideos.value
+      //         ? CustomLoader(message: "Loading Videos")
+      //         : ListView.builder(
+      //             itemCount: 4, itemBuilder: (ctx, index) => VideoCard()),
+      //   ),
+      // ),
+    );
+  }
+}
