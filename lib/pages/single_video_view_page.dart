@@ -1,35 +1,70 @@
+import 'package:aneen/model/video_model.dart';
 import 'package:flutter/material.dart';
 import 'package:aneen/widgets/SingleVideoViewPage/video_description.dart';
+import 'package:chewie/chewie.dart';
+import 'package:video_player/video_player.dart';
 
-class SingleVideoViewPage extends StatelessWidget {
-  final String videoURL;
+class SingleVideoViewPage extends StatefulWidget {
+  final VideoModel video;
+  const SingleVideoViewPage({required this.video});
 
-  const SingleVideoViewPage({required this.videoURL});
+  @override
+  _SingleVideoViewPageState createState() => _SingleVideoViewPageState();
+}
+
+class _SingleVideoViewPageState extends State<SingleVideoViewPage> {
+  late VideoPlayerController _videoPlayerController;
+  ChewieController? _chewieController;
+
+  @override
+  void initState() {
+    super.initState();
+    _videoPlayerController = VideoPlayerController.network(widget.video.url);
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController,
+      autoInitialize: true,
+      looping: false,
+      autoPlay: false,
+      errorBuilder: (context, errorMessage) {
+        return Center(
+            child: Text(errorMessage, style: TextStyle(color: Colors.white)));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Single video")),
+        appBar: AppBar(title: Text(widget.video.title)),
         body: Container(
           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           height: double.infinity,
           width: double.infinity,
-          // padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              SizedBox(
-                height: 160,
-                width: double.infinity,
-                child: Placeholder(),
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Chewie(
+                  controller: _chewieController!,
+                ),
               ),
               SizedBox(height: 18),
-              VideoDescription()
+              VideoDescription(
+                video: widget.video,
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    _chewieController?.dispose();
+    super.dispose();
   }
 }

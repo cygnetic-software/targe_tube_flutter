@@ -1,9 +1,11 @@
+import 'package:aneen/model/video_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aneen/pages/report_content_page.dart';
 
 class VideoDescription extends StatelessWidget {
-  const VideoDescription({super.key});
+  final VideoModel video;
+  const VideoDescription({super.key, required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class VideoDescription extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "How to make Cygnetic",
+                  video.title,
                   style: TextStyle(
                     overflow: TextOverflow.ellipsis,
                     fontSize: 18,
@@ -30,20 +32,20 @@ class VideoDescription extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Malik Muneeb" + " - ",
+                video.uploaderDetails["name"] + " - ",
                 style: TextStyle(fontWeight: FontWeight.bold),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                "Category" + " - ",
+                video.category + " - ",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black45,
                 ),
               ),
               Text(
-                "Sub Category",
+                video.subcategory,
                 style: TextStyle(color: Colors.black45),
               ),
             ],
@@ -60,7 +62,7 @@ class VideoDescription extends StatelessWidget {
                   ),
                   SizedBox(width: 4),
                   Text(
-                    "11M Views",
+                    video.views.toString() + " Views",
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -139,7 +141,7 @@ class VideoDescription extends StatelessWidget {
                     ),
                     SizedBox(width: 8),
                     Text(
-                      "Malik Muneeb",
+                      video.uploaderDetails["name"],
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.black45),
                     ),
@@ -160,7 +162,7 @@ class VideoDescription extends StatelessWidget {
                     ),
                     SizedBox(width: 8),
                     Text(
-                      "malikmuneeb20@hotmail.com",
+                      video.uploaderDetails["email"],
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black45,
