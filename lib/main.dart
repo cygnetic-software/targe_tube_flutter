@@ -24,7 +24,7 @@ class AneenWebApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Aneen",
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.red),
       home: SafeArea(child: WebHome()),
     );
   }

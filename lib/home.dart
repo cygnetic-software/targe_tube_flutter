@@ -6,6 +6,7 @@ import 'package:aneen/pages/login_page.dart';
 import 'package:aneen/pages/post_video_page.dart';
 import 'package:aneen/pages/profile_page.dart';
 import 'package:aneen/pages/register_page.dart';
+import 'package:flutter/gestures.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -48,25 +49,26 @@ class WebHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize:
-            Size.fromHeight(100), // Increase the app bar height to 120 pixels
+        preferredSize: Size.fromHeight(80),
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          margin: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.1),
+          width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: EdgeInsets.only(top: 7, bottom: 7),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: AppBar(
-              toolbarHeight: 100, // Set the desired toolbar height
+              toolbarHeight: 80,
               title: Text('Website Navbar'),
               centerTitle: true,
-              titleSpacing: 0.0,
               leading: Container(
-                height: 80, // Set the desired height of the leading image
-                width: 80, // Set the desired width of the leading image
-                child: Image.asset(
-                  'assets/images/aneenLogo.png',
-                  fit: BoxFit.cover,
+                height: 80,
+                width: 80,
+                child: TextButton(
+                  onPressed: () {
+                    index.value = 0;
+                  },
+                  child: Image.asset(
+                    'assets/images/aneenLogo.jpeg',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               backgroundColor: Colors.transparent,
@@ -75,50 +77,26 @@ class WebHome extends StatelessWidget {
                 color: Colors.black,
               ),
               actions: [
-                TextButton(
-                  onPressed: () {
-                    index.value = 0;
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.home),
-                      Text("Login"),
-                    ],
-                  ),
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        index.value == 0 ? Colors.blue : Colors.black,
-                  ),
-                ),
-                TextButton(
+                _buildActionButton(
+                  icon: Icons.login,
+                  label: 'Login',
                   onPressed: () {
                     index.value = 1;
                   },
-                  child: Icon(Icons.category),
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        index.value == 1 ? Colors.blue : Colors.black,
-                  ),
                 ),
-                TextButton(
+                _buildActionButton(
+                  icon: Icons.person_add,
+                  label: 'Register',
                   onPressed: () {
                     index.value = 2;
                   },
-                  child: Icon(Icons.camera),
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        index.value == 2 ? Colors.blue : Colors.black,
-                  ),
                 ),
-                TextButton(
+                _buildActionButton(
+                  icon: Icons.camera,
+                  label: 'Post a free video',
                   onPressed: () {
                     index.value = 3;
                   },
-                  child: Icon(Icons.person),
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        index.value == 3 ? Colors.blue : Colors.black,
-                  ),
                 ),
               ],
             ),
@@ -126,12 +104,32 @@ class WebHome extends StatelessWidget {
         ),
       ),
       body: Obx(() => [
-            DashboardPage(),
-            CategoryPage(),
-            PostVideoPage(),
+            DashboardPageWeb(),
             ProfilePage(),
+            ProfilePage(),
+            PostVideoPage(),
           ][index.value]),
       bottomNavigationBar: null,
+    );
+  }
+
+  Widget _buildActionButton({
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+  }) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Row(
+        children: [
+          Icon(icon),
+          SizedBox(width: 8),
+          Text(label),
+        ],
+      ),
+      style: TextButton.styleFrom(
+        foregroundColor: index.value == 3 ? Colors.red : Colors.black,
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:aneen/utils/vertical_spacer.dart';
 
@@ -29,7 +30,7 @@ class SearchBarSection extends StatelessWidget {
                   color: Colors.grey[200]),
             ),
             SizedBox(height: 20),
-            SearchBar(),
+            SearchBar()
           ],
         ),
       ),
@@ -52,8 +53,14 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    bool isWeb = kIsWeb;
+    double width = MediaQuery.of(context).size.width;
+    if (isWeb) {
+      width = width * 0.6;
+    }
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 30),
+        width: width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Colors.grey[200],

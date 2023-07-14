@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aneen/controllers/auth_controller.dart';
@@ -18,9 +19,9 @@ class ProfilePage extends StatelessWidget {
         body: Obx(() {
           switch (authController.pageState.value) {
             case PageState.login:
-              return LoginPage();
+              return kIsWeb ? LoginPageWeb() : LoginPage();
             case PageState.register:
-              return RegisterPage();
+              return kIsWeb ? RegisterPageWeb() : RegisterPage();
             case PageState.profile:
               return Profile();
             default:
