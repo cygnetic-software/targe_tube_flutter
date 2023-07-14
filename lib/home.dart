@@ -1,3 +1,5 @@
+import 'package:aneen/controllers/auth_controller.dart';
+import 'package:aneen/widgets/DashboardPage/footer_bar_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aneen/pages/category_page.dart';
@@ -43,8 +45,9 @@ class Home extends StatelessWidget {
 
 class WebHome extends StatelessWidget {
   WebHome({super.key});
-  final index = 0.obs;
+  final authController = Get.put(AuthController());
 
+  final index = 0.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,8 +108,8 @@ class WebHome extends StatelessWidget {
       ),
       body: Obx(() => [
             DashboardPageWeb(),
-            ProfilePage(),
-            ProfilePage(),
+            LoginPageWeb(),
+            RegisterPageWeb(),
             PostVideoPage(),
           ][index.value]),
       bottomNavigationBar: null,
