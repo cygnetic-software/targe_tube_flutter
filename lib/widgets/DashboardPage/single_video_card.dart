@@ -1,4 +1,5 @@
 import 'package:aneen/model/video_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aneen/pages/single_video_view_page.dart';
@@ -35,6 +36,11 @@ class SingleVideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWeb = kIsWeb;
+    double width = MediaQuery.of(context).size.width;
+    if (isWeb) {
+      width = 400;
+    }
     return Material(
       elevation: 3.0,
       child: TextButton(
@@ -44,7 +50,7 @@ class SingleVideoCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           height: 250,
-          width: double.infinity,
+          width: width,
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
