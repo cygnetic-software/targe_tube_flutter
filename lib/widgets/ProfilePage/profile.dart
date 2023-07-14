@@ -1,4 +1,5 @@
 import 'package:aneen/controllers/setting_controller.dart';
+import 'package:aneen/global/user.dart';
 import 'package:aneen/pages/profile/blocked_users.dart';
 import 'package:aneen/pages/profile/my_videos.dart';
 import 'package:aneen/pages/profile/pending_videos.dart';
@@ -17,6 +18,7 @@ class Profile extends StatelessWidget {
     Get.put(SettingController());
     final authController = Get.find<AuthController>();
     final controller = Get.find<SettingController>();
+    print(user.value.email);
     return Padding(
       padding: EdgeInsets.all(10),
       child: Column(
@@ -31,11 +33,11 @@ class Profile extends StatelessWidget {
           ),
           VerticalSpacer(10),
           Obx(
-            () => TextHolder(text: controller.name.value),
+            () => TextHolder(text: user.value.username),
           ),
           VerticalSpacer(10),
           Obx(
-            () => TextHolder(text: controller.email.value),
+            () => TextHolder(text: user.value.email),
           ),
           VerticalSpacer(30),
           CustomListButton(

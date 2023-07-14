@@ -44,7 +44,7 @@ class _NetworkImageLoaderState extends State<NetworkImageLoader> {
             borderRadius: BorderRadius.circular(5),
             child: Image.network(
               widget.imageUrl,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           );
   }

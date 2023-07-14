@@ -138,6 +138,7 @@ class PostVideoPage extends StatelessWidget {
       ),
       body: Obx(
         () {
+          print(user.value.id);
           if (controller.uploadLoading.value) {
             return CustomLoader(message: "Loading");
           } else if (controller.uploadProgress.value > 0.0) {
@@ -145,7 +146,7 @@ class PostVideoPage extends StatelessWidget {
                 message: "Uploading video",
                 progress: controller.uploadProgress);
           } else {
-            return user.value.id.isEmpty
+            return user.value.id == ""
                 ? Center(
                     child: Text("Please login or register to post a video..."),
                   )

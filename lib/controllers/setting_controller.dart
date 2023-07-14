@@ -1,13 +1,12 @@
 import 'package:aneen/global/user.dart';
+import 'package:aneen/model/user_model.dart';
+import 'package:aneen/model/video_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingController extends GetxController {
-  final uid = "".obs;
-  final name = "".obs;
-  final email = "".obs;
   final blockedUserIds = [].obs;
   final usernameController = TextEditingController();
   final loadingVideos = true.obs;
@@ -18,22 +17,23 @@ class SettingController extends GetxController {
     super.onInit();
     print("*******************************s");
     print(user.value.username);
-    uid.value = user.value.id;
-    name.value = user.value.username;
-    email.value = user.value.email;
     blockedUserIds.value = user.value.blockedUsers;
-    usernameController.text = name.value;
+    usernameController.text = user.value.username;
   }
 
-  Future<List> getVideos() async {
+  Future<List<VideoModel>> getVideos() async {
     loadingVideos.value = true;
     final querySnapshot = await FirebaseFirestore.instance
         .collection('posts')
         .where('isPending', isEqualTo: false)
-        .where('uploader_id', isEqualTo: uid)
+        .where('uploader_id', isEqualTo: user.value.id)
         .get();
-
-    final videos = querySnapshot.docs.map((doc) => doc.data()).toList();
+    print("=============================================");
+    print(querySnapshot.docs);
+    final videos = querySnapshot.docs.map((doc) {
+      print(doc.data());
+      return VideoModel.fromJson(doc.data());
+    }).toList();
     loadingVideos.value = false;
     return videos;
   }
@@ -43,7 +43,7 @@ class SettingController extends GetxController {
     final querySnapshot = await FirebaseFirestore.instance
         .collection('posts')
         .where('isPending', isEqualTo: true)
-        .where('uploader_id', isEqualTo: uid)
+        .where('uploader_id', isEqualTo: user.value.id)
         .get();
 
     final videos = querySnapshot.docs.map((doc) => doc.data()).toList();
@@ -51,17 +51,20 @@ class SettingController extends GetxController {
     return videos;
   }
 
-  Future<List> getBlockedUsers() async {
-    final blockedUsers = <dynamic>[];
+  Future<List<User>> getBlockedUsers() async {
+    final blockedUsers = <User>[];
 
     for (final userId in blockedUserIds) {
       final querySnapshot = await FirebaseFirestore.instance
           .collection('users')
-          .where('id', isEqualTo: userId)
+          .doc(userId)
           .get();
 
-      final user = querySnapshot.docs.map((doc) => doc.data()).first;
-      blockedUsers.add(user);
+      final user = querySnapshot.data();
+      blockedUsers.add(User(
+          id: querySnapshot.id,
+          username: querySnapshot.data()!["name"],
+          email: querySnapshot.data()!["email"]));
     }
 
     return blockedUsers;
@@ -86,7 +89,7 @@ class SettingController extends GetxController {
       // Update the name in Firebase Firestore
       await FirebaseFirestore.instance
           .collection('users')
-          .doc(uid.value)
+          .doc(user.value.id)
           .update({'username': newName});
     }
   }

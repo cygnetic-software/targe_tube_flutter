@@ -19,13 +19,14 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
-    authListener();
-  }
-
-  void authListener() {
     _auth.authStateChanges().listen((User? usr) async {
+      print("00000000000000000000000000000000000000000000000000000");
+      print("I WAS CALLLLLEDDDDDD");
+      print("11111111111111111111111111111111111111111111111111111");
       if (usr == null) {
+        print("here i am ");
+        user.value = um.User(
+            id: "", username: "", email: "", blockedUsers: [], posts: []);
         pageState.value = PageState.login;
       } else {
         final value = await FirebaseFirestore.instance
@@ -33,15 +34,16 @@ class AuthController extends GetxController {
             .doc(usr.uid)
             .get();
         user.value = um.User(
-            id: usr.uid,
-            username: usr.displayName.toString(),
-            email: usr.email.toString(),
+            id: value.id,
+            username: value.data()!["name"],
+            email: value.data()!["email"],
             blockedUsers: value.data()!["blockedUsers"],
             posts: value.data()!["posts"]);
 
         pageState.value = PageState.profile;
       }
     });
+    super.onInit();
   }
 
   String? emailValidater(String? value) {
@@ -93,7 +95,6 @@ class AuthController extends GetxController {
           backgroundColor: Colors.green[200],
           margin: EdgeInsets.all(10),
           borderRadius: 1);
-      pageState.value = PageState.profile;
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Login Error", e.message.toString(),
           backgroundColor: Colors.red[500],
@@ -138,9 +139,10 @@ class AuthController extends GetxController {
         id: userCredential.user!.uid,
         username: name,
         email: email,
+        blockedUsers: [],
+        posts: [],
       ).obs;
 
-      pageState.value = PageState.profile;
       Get.snackbar("SignUp Success", "Welcome Back",
           backgroundColor: Colors.green[200],
           margin: EdgeInsets.all(10),
@@ -164,9 +166,62 @@ class AuthController extends GetxController {
     confirmPasswordController.text = "";
   }
 
-  void signOut() {
-    _auth.signOut();
-    pageState.value = PageState.login;
+  void signOut() async {
+    await _auth.signOut();
+  }
+
+  void blockUser(String userId) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    String currentUserId = user.value.id; // Replace with the current user's ID
+
+    try {
+      DocumentReference userRef =
+          firestore.collection('users').doc(currentUserId);
+
+      // Fetch the current list of blocked users
+      DocumentSnapshot userSnapshot = await userRef.get();
+      List<String> blockedUsers =
+          List<String>.from(userSnapshot.get('blockedUsers'));
+
+      // Add the blocked user to the list if not already present
+      if (!blockedUsers.contains(userId)) {
+        blockedUsers.add(userId);
+      }
+
+      // Update the 'blockedUsers' field in Firestore
+      await userRef.update({'blockedUsers': blockedUsers});
+
+      print('User blocked successfully');
+    } catch (e) {
+      print('Error blocking user: $e');
+    }
+  }
+
+  Future<void> unblockUser(String userId) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    String currentUserId = user.value.id; // Replace with the current user's ID
+
+    try {
+      DocumentReference userRef =
+          firestore.collection('users').doc(currentUserId);
+
+      // Fetch the current list of blocked users
+      DocumentSnapshot userSnapshot = await userRef.get();
+      List<String> blockedUsers =
+          List<String>.from(userSnapshot.get('blockedUsers'));
+
+      // Remove the user from the blockedUsers list
+      if (blockedUsers.contains(userId)) {
+        blockedUsers.remove(userId);
+      }
+
+      // Update the 'blockedUsers' field in Firestore
+      await userRef.update({'blockedUsers': blockedUsers});
+
+      print('User unblocked successfully');
+    } catch (e) {
+      print('Error unblocking user: $e');
+    }
   }
 
   void goToLogin() {
